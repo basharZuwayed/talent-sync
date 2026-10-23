@@ -1,0 +1,28 @@
+{
+  "name": "talent-sync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TalentSync - modern talent matching and recruitment synchronization platform",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"server,client\" -c \"cyan,magenta\" \"npm run dev --workspace=@talent-sync/server\" \"npm run dev --workspace=@talent-sync/client\"",
+    "dev:server": "npm run dev --workspace=@talent-sync/server",
+    "dev:client": "npm run dev --workspace=@talent-sync/client",
+    "build": "npm run build --workspace=@talent-sync/shared && npm run build --workspace=@talent-sync/server && npm run build --workspace=@talent-sync/client",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:generate": "npm run db:generate --workspace=@talent-sync/server",
+    "db:migrate": "npm run db:migrate --workspace=@talent-sync/server",
+    "db:push": "npm run db:push --workspace=@talent-sync/server",
+    "db:studio": "npm run db:studio --workspace=@talent-sync/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3",
+    "vitest": "^5.0.5"
+  }
+}
